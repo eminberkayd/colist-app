@@ -1,30 +1,31 @@
-import React from 'react'
-import { View, Text, StyleSheet } from "react-native";
-
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 interface Props {
-    imgUrl: string,
     text: string,
-    seen: boolean
+    seen: boolean,
+    onPress: () => any
 }
 
-export const NotificationElement = ({ imgUrl, text, seen }: Props) => {
+export const NotificationElement = ({ text, seen, onPress }: Props) => {
     return (
-        <View style={styles.container}>
-            <Text>
-                NotificationElement
-            </Text>
+        <View style={{ ...styles.container, backgroundColor: seen ? '#e6e8e6' : '#e8e6e6' }}>
+            <TouchableOpacity onPress={onPress} style={styles.button}>
+                <Text>{text}</Text>
+            </TouchableOpacity>
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "5%",
-        borderWidth: 2,
-        backgroundColor: "#eff1ed"
+        height: 50,
+        paddingLeft: "5%",
+        justifyContent: "center"
+    },
+    button: {
+        flex: 1
     }
 })
+
